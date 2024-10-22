@@ -8,15 +8,15 @@ import SubmitButton from '@/components/FormInputs/SubmitButton';
 import TextareaInput from '@/components/FormInputs/TextareaInput';
 import SelectInput from '@/components/FormInputs/SelectInput';
 
-export default function NewWarehouse() {
-    const selectOptions = [
+export default function NewAdjustments() {
+    const branches = [
         {
-            label:"Main",
-            value:"main"
+            label:"Branch A",
+            value:"asdasd45498ad"
         },
         {
-            label:"Branch",
-            value:"branch"
+            label:"Branch B",
+            value:"qwerwqedqasd7574asdasD"
         },
     ]
     const {
@@ -32,7 +32,7 @@ export default function NewWarehouse() {
         setLoading(true)
         const baseUrl = "http://localhost:3004"
         try {
-            const response = await fetch(`${baseUrl}/api/warehouse`, {
+            const response = await fetch(`${baseUrl}/api/adjustments`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -54,16 +54,15 @@ export default function NewWarehouse() {
     return (
         <div>
             {/* Header */}
-            <FormHeader title="New Warehouse" href="/dashboard/inventory/" />
+            <FormHeader title="New Adjustment" href="/dashboard/inventory/" />
             {/* Form */}
             <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-4xl p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700 mx-auto my-3">
                 <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
-                    <SelectInput name="type" label="Select the Warehouse Type" register={register} className="w-full" options={selectOptions}/>
-                    <TextInput label="Warehouse Title" name="title" register={register} errors={errors} className='w-full' />
-                    <TextInput label="Warehouse Location" name="location" register={register} errors={errors} />
-                    <TextareaInput label="Warehouse Description" name="description" register={register} errors={errors} />
+                <TextInput type='number' label="Enter Amount of Stock to Transfer" name="transferStockQty" register={register} errors={errors} className='w-full' />
+                    <SelectInput name="receivingBranchId" label="Select the Branch that will receive the Stock" register={register} className="w-full" options={branches}/>
+                    <TextareaInput label="Adjustment Notes" name="notes" register={register} errors={errors} />
                 </div>
-                <SubmitButton isLoading={loading} title="Category" />
+                <SubmitButton isLoading={loading} title="Adjustment" />
             </form>
         </div>
     )

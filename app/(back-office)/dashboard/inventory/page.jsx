@@ -46,6 +46,14 @@ export default function Inventory() {
             linkTitle: "New Unit",
             enabled: true,
             icon: ScrollText,
+        },
+        {
+            title: "Inventory Adjustment",
+            description: "Transfer Stock from the Main Warehouse",
+            link: "/dashboard/inventory/adjustments/new",
+            linkTitle: "New Adjustment",
+            enabled: true,
+            icon: ScrollText,
         }
     ]
     return (
