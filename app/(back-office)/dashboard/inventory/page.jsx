@@ -1,8 +1,7 @@
 "use client"
 import FixedHeader from '@/components/dashboard/FixedHeader'
 import OptionCard from '@/components/dashboard/OptionCard'
-import { Boxes, Component, ScrollText, Shirt } from 'lucide-react'
-import Link from 'next/link'
+import { Diff, LayoutGrid, LayoutPanelTop, Scale,  Slack, Warehouse } from 'lucide-react'
 import React from 'react'
 
 export default function Inventory() {
@@ -13,7 +12,7 @@ export default function Inventory() {
             link: "/dashboard/inventory/items/new",
             linkTitle: "New Item",
             enabled: true,
-            icon: Shirt,
+            icon: LayoutGrid,
         },
         {
             title: "Categories",
@@ -21,7 +20,7 @@ export default function Inventory() {
             link: "/dashboard/inventory/categories/new",
             linkTitle: "New Category",
             enabled:true,
-            icon: Boxes,
+            icon: LayoutPanelTop,
         },
         {
             title: "Brands",
@@ -29,7 +28,7 @@ export default function Inventory() {
             link: "/dashboard/inventory/brands/new",
             linkTitle: "New Brand",
             enabled: true,
-            icon: ScrollText,
+            icon: Slack,
         },
         {
             title: "Warehouse",
@@ -37,7 +36,7 @@ export default function Inventory() {
             link: "/dashboard/inventory/warehouse/new",
             linkTitle: "New Warehouse",
             enabled: true,
-            icon: Component,
+            icon: Warehouse,
         },
         {
             title: "Units",
@@ -45,7 +44,7 @@ export default function Inventory() {
             link: "/dashboard/inventory/units/new",
             linkTitle: "New Unit",
             enabled: true,
-            icon: ScrollText,
+            icon: Scale,
         },
         {
             title: "Inventory Adjustment",
@@ -53,13 +52,13 @@ export default function Inventory() {
             link: "/dashboard/inventory/adjustments/new",
             linkTitle: "New Adjustment",
             enabled: true,
-            icon: ScrollText,
+            icon: Diff,
         }
     ]
     return (
         <div>
             <FixedHeader newLink="/dashboard/inventory/items/new" />
-            <div className="grid grid-col-1 lg:grid-cols-2 px-16 py-8 gap-6">
+            <div className="grid grid-col-1 lg:grid-cols-3 md:grid-cols-2 px-16 py-8 gap-6">
                 {
                     optionCards.map((card, i) => {
                         return (

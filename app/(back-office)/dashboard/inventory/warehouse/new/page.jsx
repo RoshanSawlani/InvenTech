@@ -7,6 +7,7 @@ import { Plus } from 'lucide-react';
 import SubmitButton from '@/components/FormInputs/SubmitButton';
 import TextareaInput from '@/components/FormInputs/TextareaInput';
 import SelectInput from '@/components/FormInputs/SelectInput';
+import toast from 'react-hot-toast';
 
 export default function NewWarehouse() {
     const selectOptions = [
@@ -42,6 +43,7 @@ export default function NewWarehouse() {
             if (response.ok) {
                 console.log(response)
                 setLoading(false)
+                toast.success("New Warehouse created successfully")
                 reset()
             }
 
@@ -63,7 +65,7 @@ export default function NewWarehouse() {
                     <TextInput label="Warehouse Location" name="location" register={register} errors={errors} />
                     <TextareaInput label="Warehouse Description" name="description" register={register} errors={errors} />
                 </div>
-                <SubmitButton isLoading={loading} title="Category" />
+                <SubmitButton isLoading={loading} title="Warehouse" />
             </form>
         </div>
     )

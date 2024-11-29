@@ -6,6 +6,7 @@ import TextInput from '@/components/FormInputs/TextInput';
 import { Plus } from 'lucide-react';
 import SubmitButton from '@/components/FormInputs/SubmitButton';
 import TextareaInput from '@/components/FormInputs/TextareaInput';
+import toast from 'react-hot-toast';
 
 export default function NewBrand() {
     const {
@@ -31,6 +32,7 @@ export default function NewBrand() {
             if(response.ok){
                 console.log(response)
                 setLoading(false)
+                toast.success("New Brand created successfully")
                 reset()
             }
             
