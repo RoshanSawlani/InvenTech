@@ -31,6 +31,10 @@ export default function Sidebar() {
             title:"Inventory Adjustments",
             href:"/dashboard/inventory",
         },
+        {
+            title:"Supplier",
+            href:"/dashboard/supplier",
+        },
     ]
     const salesLinks = [
         {

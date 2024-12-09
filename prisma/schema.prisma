@@ -28,7 +28,8 @@ model Item {
   brandId      String   @db.ObjectId
   sellingPrice    Float
   buyingPrice    Float
-  supplier     String
+  supplier        Supplier    @relation(fields: [supplierId], references: [id])
+  supplierId      String   @db.ObjectId
   reOrderPoint Int
   location     String?
   imageUrl     String
@@ -36,6 +37,8 @@ model Item {
   dimensions   String?
   taxRate      Float
   notes        String?
+  AddStockAdjustment      AddStockAdjustment[]
+  TransferStockAdjustment TransferStockAdjustment[]
 }
 
 model Category {
@@ -64,8 +67,6 @@ model Warehouse {
   location                String?
   description             String?
   warehouseType           String
-  AddStockAdjustment      AddStockAdjustment[]
-  TransferStockAdjustment TransferStockAdjustment[]
 }
 
 model AddStockAdjustment {
@@ -73,8 +74,9 @@ model AddStockAdjustment {
   referenceNumber String
   addStockQty     Int
   notes           String?
-  warehouse       Warehouse @relation(fields: [warehouseId], references: [id])
-  warehouseId     String    @db.ObjectId
+  receivingWarehouseId     String    
+  item        Item @relation(fields: [itemId], references: [id])
+  itemId      String    @db.ObjectId
 }
 
 model TransferStockAdjustment {
@@ -82,6 +84,22 @@ model TransferStockAdjustment {
   referenceNumber  String
   transferStockQty Int
   notes            String?
-  warehouse        Warehouse @relation(fields: [warehouseId], references: [id])
-  warehouseId      String    @db.ObjectId
+  givingWarehouseId      String    
+  receivingWarehouseId      String   
+  item        Item @relation(fields: [itemId], references: [id])
+  itemId      String    @db.ObjectId
+}
+
+model Supplier {
+  id              String    @id @default(auto()) @map("_id") @db.ObjectId
+  name            String
+  phone           String?
+  email           String?
+  address         String?
+  contactPerson   String?
+  supplierCode    String    @unique
+  paymentTerms    String?
+  taxID           String?
+  notes           String?
+  Item            Item[]
 }

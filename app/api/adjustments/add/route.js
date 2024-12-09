@@ -3,8 +3,8 @@ import { NextResponse } from "next/server";
 
 export async function POST(request) {
     try {
-        const { addStockQty, warehouseId, notes, referenceNumber } = await request.json();
-        const adjustment = await db.addStockAdjustment
+        const { addStockQty, receivingWarehouseId, notes, referenceNumber,itemId } = await request.json();
+        const adjustment = await db.addStockAdjustment.create({data:{ addStockQty:parseInt(addStockQty),itemId, receivingWarehouseId, notes, referenceNumber }})
         console.log(adjustment)
         return NextResponse.json(adjustment);
     } catch (error) {

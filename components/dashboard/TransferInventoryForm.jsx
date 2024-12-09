@@ -5,6 +5,7 @@ import TextInput from '@/components/FormInputs/TextInput';
 import SubmitButton from '@/components/FormInputs/SubmitButton';
 import TextareaInput from '@/components/FormInputs/TextareaInput';
 import SelectInput from '@/components/FormInputs/SelectInput';
+import { makePostRequest } from '@/lib/apiRequest';
 
 export default function TransferInventoryForm() {
     const branches = [
@@ -17,6 +18,20 @@ export default function TransferInventoryForm() {
             value: "qwerwqedqasd7574asdasD"
         },
     ]
+    const items = [
+        {
+            label: "Item C",
+            value: "qwerwqedqasd7574asdasD"
+        },
+        {
+            label: "Item A",
+            value: "qwerwqedqasdasd7574asdasD"
+        },
+        {
+            label: "Item B",
+            value: "qwerwasdqedqasd7574asdasD"
+        },
+    ]
     const {
         register,
         handleSubmit,
@@ -27,34 +42,17 @@ export default function TransferInventoryForm() {
 
     async function onSubmit(data) {
         console.log(data)
-        setLoading(true)
-        const baseUrl = "http://localhost:3004"
-        try {
-            const response = await fetch(`${baseUrl}/api/adjustments/transfer`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(data)
-            })
-            if (response.ok) {
-                console.log(response)
-                setLoading(false)
-                reset()
-            }
-
-        } catch (error) {
-            setLoading(false)
-            console.log(error)
-        }
+        makePostRequest(setLoading,'api/adjustments/transfer',data,"StockAdjustment",reset)
     }
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-4xl p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700 mx-auto my-3">
             <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
-                <TextInput type='number' label="Reference Number" name="referenceNumber" register={register} errors={errors}/>
-                <TextInput type='number' label="Enter Quantity of Stock to Transfer" name="transferStockQty" register={register} errors={errors}/>
-                <SelectInput name="warehouseId" label="Select the Warehouse that will give the Stock" register={register} className="w-full" options={branches} />
+                <TextInput type='number' label="Reference Number" name="referenceNumber" register={register} 
+                errors={errors}/>
+                <SelectInput name="itemId" label="Select the Item" register={register} className="w-full" options={items} />
+                <TextInput type='number' label="Enter Quantity of Stock to Transfer" name="transferStockQty" register={register} errors={errors} className='w-full'/>
+                <SelectInput name="givingWarehouseId" label="Select the Warehouse that will give the Stock" register={register} className="w-full" options={branches} />
                 <SelectInput name="receivingWarehouseId" label="Select the Warehouse that will receive the Stock" register={register} className="w-full" options={branches} />
                 <TextareaInput label="Adjustment Notes" name="notes" register={register} errors={errors} />
             </div>

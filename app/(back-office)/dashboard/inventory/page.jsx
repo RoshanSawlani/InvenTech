@@ -1,7 +1,7 @@
 "use client"
 import FixedHeader from '@/components/dashboard/FixedHeader'
 import OptionCard from '@/components/dashboard/OptionCard'
-import { Diff, LayoutGrid, LayoutPanelTop, Scale,  Slack, Warehouse } from 'lucide-react'
+import { Diff, Factory, LayoutGrid, LayoutPanelTop, Scale,  Slack, Warehouse } from 'lucide-react'
 import React from 'react'
 
 export default function Inventory() {
@@ -45,6 +45,14 @@ export default function Inventory() {
             linkTitle: "New Unit",
             enabled: true,
             icon: Scale,
+        },
+        {
+            title: "Suppliers",
+            description: "Tweak your item prices for specific contacts or transactions",
+            link: "/dashboard/inventory/suppliers/new",
+            linkTitle: "New Supplier",
+            enabled: true,
+            icon: Factory,
         },
         {
             title: "Inventory Adjustment",

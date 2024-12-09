@@ -11,6 +11,7 @@ import { UploadDropzone } from '@/lib/uploadthing';
 import { Pencil } from 'lucide-react';
 import Image from 'next/image';
 import ImageInput from '@/components/FormInputs/ImageInput';
+import { makePostRequest } from '@/lib/apiRequest';
 
 export default function NewItem() {
     const [imageUrl, setImageUrl] = useState("")
@@ -85,24 +86,7 @@ export default function NewItem() {
         console.log(data)
         setLoading(true)
         const baseUrl = "http://localhost:3004"
-        try {
-            const response = await fetch(`${baseUrl}/api/items`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(data)
-            })
-            if (response.ok) {
-                console.log(response)
-                setLoading(false)
-                reset()
-            }
-
-        } catch (error) {
-            setLoading(false)
-            console.log(error)
-        }
+        makePostRequest(setLoading,'api/items',data,"Item",reset)
     }
 
     return (
