@@ -3,19 +3,20 @@ import FixedHeader from '@/components/dashboard/FixedHeader'
 import { getData } from '@/lib/getData'
 
 
-export default async function Categories() {
-    const categories = await getData("categories")
-    const data = categories.map(obj=>{
+export default async function Suppliers() {
+    const suppliers = await getData("suppliers")
+    const data = suppliers.map((obj)=>{
         return{
             title:obj.title,
-            description:obj.description
+            phone:obj.phone,
+            email:obj.email
     }
     })
-    const columns = ["title", "description"]
+    const columns = ["title", "phone", "email"]
         return (
         <div>
                     {/* Header */}
-                    <FixedHeader title="Categories" newLink="/dashboard/inventory/categories/new" />
+                    <FixedHeader title="Suppliers" newLink="/dashboard/inventory/suppliers/new" />
                     {/* Table */}
                     <div className="my-4">
                         <DataTable data={data} columns={columns}/>

@@ -1,3 +1,4 @@
+import db from "@/lib/db";
 import { NextResponse } from "next/server";
 
 export async function POST(request) {
@@ -14,3 +15,21 @@ export async function POST(request) {
         },{status:500})
     }
 }
+
+export async function GET(request){
+    try {
+        const adjustments = await db.transferStockAdjustment.findMany({
+            orderBy:{
+                createdAt:'desc' //latest category
+            }
+        })
+    return NextResponse.json(adjustments);
+    } catch (error) {
+        console.log(error)
+        return NextResponse.json({
+            error,
+            message:"Failed to fetch adjustments"
+        },{status:500})
+    }
+}
+

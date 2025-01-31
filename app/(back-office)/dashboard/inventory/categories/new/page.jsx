@@ -3,10 +3,8 @@ import { useForm } from 'react-hook-form'
 import FormHeader from '@/components/dashboard/FormHeader'
 import React, { useState } from 'react'
 import TextInput from '@/components/FormInputs/TextInput';
-import { Plus } from 'lucide-react';
 import SubmitButton from '@/components/FormInputs/SubmitButton';
 import TextareaInput from '@/components/FormInputs/TextareaInput';
-import toast from 'react-hot-toast';
 import { makePostRequest } from '@/lib/apiRequest';
 
 export default function NewCategory() {
@@ -20,7 +18,7 @@ export default function NewCategory() {
 
     async function onSubmit(data) {
         console.log(data)
-        makePostRequest(setLoading,'api/categories',data,"Category",reset)
+        await makePostRequest(setLoading,'api/categories',data,"Category",reset) 
     }
 
     return (

@@ -13,12 +13,12 @@ import { makePostRequest } from '@/lib/apiRequest';
 export default function NewWarehouse() {
     const selectOptions = [
         {
-            label:"Main",
-            value:"main"
+            id:"Main",
+            title:"main"
         },
         {
-            label:"Branch",
-            value:"branch"
+            id:"Branch",
+            title:"branch"
         },
     ]
     const {

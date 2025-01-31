@@ -5,7 +5,7 @@ export default function SelectInput({
     name,
     register,
     className = "sm:col-span-2",
-    options = [],
+    options,
 }) {
     return (
         <div className={className}>
@@ -22,13 +22,15 @@ export default function SelectInput({
                     name={name}
                     className="block w-full rounded-md border-0 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
                 >
-                    {options.map((option, i) => {
-                        return (
-                            <option key={i} value={option.value}>
-                                {option.label}
+                    <option value="" disabled>
+                        Select an option
+                    </option>
+                    {Array.isArray(options) &&
+                        options.map((option) => (
+                            <option key={option.id} value={option.id}>
+                                {option.title}
                             </option>
-                        );
-                    })}
+                        ))}
                 </select>
             </div>
         </div>

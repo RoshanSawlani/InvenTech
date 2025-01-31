@@ -40,7 +40,7 @@ export default function NewSupplier() {
             {/* Form */}
             <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-4xl p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700 mx-auto my-3">
                 <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
-                    <TextInput label="Supplier's Name" name="name" register={register} errors={errors} className='w-full' />
+                    <TextInput label="Supplier's Name" name="title" register={register} errors={errors} className='w-full' />
                     <TextInput label="Supplier Phone" name="phone" register={register} errors={errors} className='w-full' />
                     <TextInput label="Supplier Email" name="email" type="email" register={register} errors={errors} className='w-full' />
                     <TextInput label="Supplier Address" name="address" register={register} errors={errors} className='w-full' />

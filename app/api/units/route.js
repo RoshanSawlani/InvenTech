@@ -19,5 +19,21 @@ export async function POST(request) {
             message:"Failed to create a unit"
         },{status:500})
     }
+}
 
+export async function GET(request){
+    try {
+        const units = await db.unit.findMany({
+            orderBy:{
+                createdAt:'desc' //latest warehouse
+            }
+        })
+        return NextResponse.json(units)
+    } catch (error) {
+        console.log(error)
+        return NextResponse.json({
+            error,
+            message:"Failed to fetch the units"
+        },{status:500})
+    }
 }
