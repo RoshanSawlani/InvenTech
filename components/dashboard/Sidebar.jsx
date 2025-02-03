@@ -8,32 +8,36 @@ import SidebarDropdownLink from './SidebarDropdownLink';
 export default function Sidebar() {
     const inventoryLinks = [
         {
+            title:"All",
+            href:"/dashboard/inventory"
+        },
+        {
             title:"Items",
-            href:"/dashboard/inventory",
+            href:"/dashboard/inventory/items",
         },
         {
             title:"Categories",
-            href:"/dashboard/inventory",
+            href:"/dashboard/inventory/categories",
         },
         {
             title:"Brands",
-            href:"/dashboard/inventory",
+            href:"/dashboard/inventory/brands",
         },
         {
             title:"Units",
-            href:"/dashboard/inventory",
+            href:"/dashboard/inventory/units",
         },
         {
             title:"Warehouse",
-            href:"/dashboard/inventory",
+            href:"/dashboard/inventory/warehouse",
         },
         {
             title:"Inventory Adjustments",
-            href:"/dashboard/inventory",
+            href:"/dashboard/inventory/adjustments",
         },
         {
             title:"Supplier",
-            href:"/dashboard/supplier",
+            href:"/dashboard/inventory/suppliers",
         },
     ]
     const salesLinks = [
@@ -75,7 +79,7 @@ export default function Sidebar() {
         },
     ]
     return (
-        <div className="w-60 min-h-screen bg-slate-800 text-slate-50 fixed">
+        <div className="w-60 min-h-screen bg-slate-800 text-slate-50 fixed hidden sm:block">
             {/* top part */}
             <div className="flex flex-col">
                 {/* logo */}

@@ -1,9 +1,19 @@
-import React from 'react'
+import DataTable from '@/components/dashboard/DataTable'
+import FixedHeader from '@/components/dashboard/FixedHeader'
+import { getData } from '@/lib/getData'
 
-export default function Units() {
-    return (
+
+export default async function Units() {
+    const units = await getData("units")
+    const columns = ["title","abbreviation"]
+        return (
         <div>
-            <h2>Units</h2>
-        </div>
+                    {/* Header */}
+                    <FixedHeader title="Units" newLink="/dashboard/inventory/units/new" />
+                    {/* Table */}
+                    <div className="my-4">
+                        <DataTable data={units} columns={columns}/>
+                    </div>
+                </div>
     )
-}
+}   

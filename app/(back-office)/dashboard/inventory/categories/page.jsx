@@ -5,12 +5,6 @@ import { getData } from '@/lib/getData'
 
 export default async function Categories() {
     const categories = await getData("categories")
-    const data = categories.map(obj=>{
-        return{
-            title:obj.title,
-            description:obj.description
-    }
-    })
     const columns = ["title", "description"]
         return (
         <div>
@@ -18,7 +12,7 @@ export default async function Categories() {
                     <FixedHeader title="Categories" newLink="/dashboard/inventory/categories/new" />
                     {/* Table */}
                     <div className="my-4">
-                        <DataTable data={data} columns={columns}/>
+                        <DataTable data={categories} columns={columns}/>
                     </div>
                 </div>
     )

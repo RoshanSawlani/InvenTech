@@ -1,4 +1,4 @@
-import { Bell, BellDot, ChevronDown, History, LayoutGrid, Plus, Settings, Users } from 'lucide-react'
+import { AlignJustify, BellDot, ChevronDown, History, LayoutGrid, Plus, Settings, Users } from 'lucide-react'
 import React from 'react'
 import SearchInput from './SearchInput'
 import Image from 'next/image'
@@ -6,15 +6,18 @@ import Image from 'next/image'
 export default function Header() {
     return (
         <div className='bg-gray-100 h-12 flex items-center justify-between px-8 border-b border-slate-200 shadow'>
+            <button className="sm:hidden">
+                <AlignJustify className="h-6 w-6" />
+            </button>
             <div className="flex gap-3">
                 {/* Recent activities */}
-                <button>
+                <button className="hidden sm:block">
                     <History className='w-6 h-6 ' />
                 </button>
                 {/* Search */}
                 <SearchInput />
             </div>
-            <div className="flex items-center gap-3">
+            <div className="items-center gap-3 hidden sm:flex">
                 {/* Plus icon */}
                 <div className="pr-2 border-r border-gray-300">
                     <button className='p-1 rounded-lg bg-blue-600'>
@@ -36,18 +39,16 @@ export default function Header() {
                 <div className="flex gap-3">
                     <button className='flex items-center'>
                         <span>Roshan</span>
-                        <ChevronDown className='w-4 h-4'/>
+                        <ChevronDown className='w-4 h-4' />
                     </button>
                     <button>
-                        <Image src="/user.jpg" alt="user image" width={96} height={96} className="w-8 h-8 rounded-full border border-slate-800"/>
-                    </button>
-                    <button>
-                        <LayoutGrid/>
+                        <LayoutGrid />
                     </button>
                 </div>
             </div>
-            {/*  */}
-
+            <button>
+                <Image src="/user.jpg" alt="user image" width={96} height={96} className="w-8 h-8 rounded-full border border-slate-800" />
+            </button>
         </div>
     )
 }

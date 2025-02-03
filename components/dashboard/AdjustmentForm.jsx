@@ -24,7 +24,7 @@ export default function AdjustmentForm({items,warehouses}) {
     return (
         <div>
             {/* Header */}
-            <FormHeader title="New Adjustment" href="/dashboard/inventory/" />
+            <FormHeader title="New Adjustment" href="/dashboard/inventory/adjustments" />
             {/* Form */}
             <div className="border-b border-gray-200 dark:border-gray-700 w-full max-w-4xl px-4 py-2 bg-white border  mx-auto my-4 shadow rounded">
                 <ul className="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400">

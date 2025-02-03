@@ -1,9 +1,19 @@
-import React from 'react'
+import DataTable from '@/components/dashboard/DataTable'
+import FixedHeader from '@/components/dashboard/FixedHeader'
+import { getData } from '@/lib/getData'
 
-export default function Warehouse() {
-    return (
+
+export default async function Warehouses() {
+    const warehouses = await getData("warehouse")
+    const columns = ["title","location","warehouseType"]
+        return (
         <div>
-            <h2>Warehouse</h2>
-        </div>
+                    {/* Header */}
+                    <FixedHeader title="Warehouse" newLink="/dashboard/inventory/warehouse/new" />
+                    {/* Table */}
+                    <div className="my-4">
+                        <DataTable data={warehouses} columns={columns}/>
+                    </div>
+                </div>
     )
-}
+}   
