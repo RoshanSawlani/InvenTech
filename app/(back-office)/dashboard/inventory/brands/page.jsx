@@ -5,14 +5,14 @@ import { getData } from '@/lib/getData'
 
 export default async function Brands() {
     const brands = await getData("brands")
-    const columns = ["title"]
+    const columns = ["title","createdAt","updatedAt"]
         return (
         <div>
                     {/* Header */}
                     <FixedHeader title="Brands" newLink="/dashboard/inventory/brands/new" />
                     {/* Table */}
                     <div className="my-4">
-                        <DataTable data={brands} columns={columns}/>
+                        <DataTable data={brands} columns={columns} resourceTitle="brands"/>
                     </div>
                 </div>
     )
