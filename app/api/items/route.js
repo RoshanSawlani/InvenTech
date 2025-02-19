@@ -43,8 +43,8 @@ export async function GET(request){
                 createdAt:'desc' //latest category
             },
             include:{
-                category:true,
-                supplier:true
+                category:true, //Returns all fields for all categories
+                supplier:true //Returns all suppliers fields
             }
         })
     return NextResponse.json(items);

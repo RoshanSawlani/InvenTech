@@ -1,25 +1,37 @@
 "use client"
 import { useForm } from 'react-hook-form'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import TextInput from '@/components/FormInputs/TextInput';
 import SubmitButton from '@/components/FormInputs/SubmitButton';
 import TextareaInput from '@/components/FormInputs/TextareaInput';
 import SelectInput from '@/components/FormInputs/SelectInput';
-import { makePostRequest } from '@/lib/apiRequest';
+import { makePostRequest, makePutRequest } from '@/lib/apiRequest';
 
-export default function AddInventoryForm({items,warehouses}) {
+export default function AddInventoryForm({items,warehouses,initialData,isUpdate=false}) {
     const {
         register,
         handleSubmit,
         reset,
+        setValue,
         formState: { errors },
-    } = useForm();
+    } = useForm({
+        defaultValues:initialData,
+    });
     const [loading, setLoading] = useState(false)
+
+    useEffect(() => {
+        if (isUpdate && initialData) {
+            Object.keys(initialData).forEach((key) => setValue(key, initialData[key]));
+        }
+    }, [isUpdate, initialData, setValue]);
 
     async function onSubmit(data) {
         console.log(data)
-        makePostRequest(setLoading,'api/adjustments/add',data,"StockAdjustment",reset)
-        
+        if (isUpdate) {
+            makePutRequest(setLoading, `api/adjustments/${initialData.id}`, data, "StockAdjustment", reset);
+        } else {
+            makePostRequest(setLoading, "api/adjustments/add", data, "StockAdjustment", reset);
+        }
     }
 
     return (
@@ -31,7 +43,7 @@ export default function AddInventoryForm({items,warehouses}) {
                 <SelectInput name="receivingWarehouseId" label="Select the Warehouse that will receive the Stock" register={register} className="w-full" options={warehouses} />
                 <TextareaInput label="Adjustment Notes" name="notes" register={register} errors={errors} />
             </div>
-            <SubmitButton isLoading={loading} title="Adjustment" />
+            <SubmitButton isLoading={loading} title={isUpdate ? "Updated Adjustment" : "Create Adjustment"}/>
         </form>
     )
 }

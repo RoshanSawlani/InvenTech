@@ -3,7 +3,7 @@ import React from 'react';
 import CreateItemForm from '@/components/dashboard/CreateItemForm';
 import { getData } from '@/lib/getData';
 
-export default async function NewItem() {
+export default async function NewItem({initialData = {}, isUpdate=false}) {
 
     const categoriesData = getData("categories");
     const unitsData = getData("units");
@@ -17,7 +17,7 @@ export default async function NewItem() {
     return (
         <div>
             {/* Header */}
-            <FormHeader title="New Item" href="/dashboard/inventory/items" />
+            <FormHeader title={isUpdate ? "Update Item" : "New Item"} href="/dashboard/inventory/items" />
             {/* Form */}
             <CreateItemForm
                 categories={categories}
@@ -25,6 +25,8 @@ export default async function NewItem() {
                 brands={brands}
                 warehouses={warehouses}
                 suppliers={suppliers}
+                initialData={initialData}
+                isUpdate={true}
             />
         </div>
     );

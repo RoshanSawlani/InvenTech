@@ -20,22 +20,22 @@ export async function GET(request,{params:{id}}){
 
 export async function PUT(request,{params:{id}}){
     try {
-        const {title} = await request.json()
-        const brand = await db.brand.update({
+        const {title,location,warehouseType} = await request.json()
+        const warehouse = await db.warehouse.update({
             where:{
                 id
             },
             data:{
-                title
+                title,location,warehouseType
             }
         })
-        console.log(brand)
-        return NextResponse.json(brand)
+        console.log(warehouse)
+        return NextResponse.json(warehouse)
     } catch (error) {
         console.log(error)
         return NextResponse.json({
             error,
-            message:"Failed to Update the brand"
+            message:"Failed to Update the warehouse"
         },{status:500})
     }
 }

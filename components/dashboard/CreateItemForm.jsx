@@ -7,18 +7,22 @@ import SubmitButton from '@/components/FormInputs/SubmitButton';
 import TextareaInput from '@/components/FormInputs/TextareaInput';
 import SelectInput from '@/components/FormInputs/SelectInput';
 import ImageInput from '@/components/FormInputs/ImageInput';
-import { makePostRequest } from '@/lib/apiRequest';
+import { makePostRequest, makePutRequest } from '@/lib/apiRequest';
+import { useRouter } from 'next/navigation';
 
 
-export default function CreateItemForm({ units, brands, warehouses }) {
+export default function CreateItemForm({ units, brands, warehouses,initialData = {}, isUpdate=false }) {
 
-    const [imageUrl, setImageUrl] = useState("")
+    const [imageUrl, setImageUrl] = useState(initialData.imageUrl)
+    const router = useRouter()
     const {
         register,   
         handleSubmit,
         reset,
         formState: { errors },
-    } = useForm();
+    } = useForm({
+        defaultValues:initialData
+    });
     const [loading, setLoading] = useState(false)
     const [suppliers, setSuppliers] = useState([]);  // State to store the suppliers
     const [loadingSuppliers, setLoadingSuppliers] = useState(true);  // Loading state for suppliers
@@ -62,12 +66,21 @@ export default function CreateItemForm({ units, brands, warehouses }) {
         fetchCategories();
     }, []);
 
+    function redirect(){
+        router.push("/dashboard/inventory/items")
+    }
 
     async function onSubmit(data) {
         data.imageUrl = imageUrl
         console.log(data)
-        makePostRequest(setLoading, 'api/items', data, "Item", reset)
-        setImageUrl("")
+        if(isUpdate){
+            // update request
+            makePutRequest(setLoading,`api/items/${initialData.id}`,data,"Item",redirect,reset)
+        }else{
+            makePostRequest(setLoading, 'api/items', data, "Item", reset)
+            setImageUrl("")
+        }
+        
     }
 
     return (
@@ -92,7 +105,7 @@ export default function CreateItemForm({ units, brands, warehouses }) {
                 <TextareaInput label="Item Notes" name="notes" register={register} errors={errors} />
                 <ImageInput label="Item Image" imageUrl={imageUrl} setImageUrl={setImageUrl} endpoint="imageUploader" />
             </div>
-            <SubmitButton isLoading={loading} title="Item" />
+            <SubmitButton isLoading={loading} title={isUpdate ? "Update Item" : "New Item"} />
         </form>
     )
 }

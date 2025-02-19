@@ -12,7 +12,7 @@ export default async function Warehouses() {
                     <FixedHeader title="Warehouse" newLink="/dashboard/inventory/warehouse/new" />
                     {/* Table */}
                     <div className="my-4">
-                        <DataTable data={warehouses} columns={columns}/>
+                        <DataTable data={warehouses} columns={columns} resourceTitle="warehouse"/>
                     </div>
                 </div>
     )
