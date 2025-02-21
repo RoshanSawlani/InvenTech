@@ -26,7 +26,7 @@ export default async function NewItem({initialData = {}, isUpdate=false}) {
                 warehouses={warehouses}
                 suppliers={suppliers}
                 initialData={initialData}
-                isUpdate={true}
+                isUpdate={isUpdate}
             />
         </div>
     );

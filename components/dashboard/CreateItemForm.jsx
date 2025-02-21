@@ -105,7 +105,7 @@ export default function CreateItemForm({ units, brands, warehouses,initialData =
                 <TextareaInput label="Item Notes" name="notes" register={register} errors={errors} />
                 <ImageInput label="Item Image" imageUrl={imageUrl} setImageUrl={setImageUrl} endpoint="imageUploader" />
             </div>
-            <SubmitButton isLoading={loading} title={isUpdate ? "Update Item" : "New Item"} />
+            <SubmitButton isLoading={loading} title={isUpdate ? "Updated Item" : "New Item"} />
         </form>
     )
 }

@@ -1,5 +1,6 @@
-import { Pencil, Trash2 } from "lucide-react";
+import { Pencil } from "lucide-react";
 import Link from "next/link";
+import DeleteBtn from "./DeleteBtn";
 
 export default function DataTable({ data = [], columns = [], resourceTitle }) {
     return (
@@ -58,10 +59,7 @@ export default function DataTable({ data = [], columns = [], resourceTitle }) {
                                         <Pencil className="w-4 h-4" />
                                         <span>Edit</span>
                                     </Link>
-                                    <button className="font-medium text-red-600 dark:text-blue-500 flex items-center space-x-1">
-                                        <Trash2 className="w-4 h-4" />
-                                        <span>Delete</span>
-                                    </button>
+                                    <DeleteBtn id={item.id} endpoint={resourceTitle}/>
                                 </td>
                             </tr>
                         );

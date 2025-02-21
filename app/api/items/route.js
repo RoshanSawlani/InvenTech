@@ -56,3 +56,23 @@ export async function GET(request){
         },{status:500})
     }
 }
+
+export async function DELETE(request){
+    try {
+        const id = request.nextUrl.searchParams.get("id")
+        const deleteItem = await db.item.delete({
+            where:{
+                id
+            },
+        })
+        return NextResponse.json(deleteItem)
+    } catch (error) {
+        console.log(error)
+        return NextResponse.json({
+            error,
+            message:"Failed to Delete Item"
+        },{
+            status:500
+        })
+    }
+}
