@@ -36,8 +36,8 @@ export default function HomeNavbar() {
                 </div>
             </div>
             <nav className='mt-6 flex space-x-4'>
-                <div class="text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700">
-                    <ul class="flex flex-wrap -mb-px">
+                <div className="text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700">
+                    <ul className="flex flex-wrap -mb-px">
                     {
                     navLinks.map((item, i) => {
                         return (

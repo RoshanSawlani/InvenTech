@@ -5,9 +5,10 @@ import { getData } from '@/lib/getData';
 export default async function NewAdjustments({initialData = {},isUpdate=false}) {
     const itemsData = getData("items")
     const warehousesData = getData("warehouse")
+    const suppliersData = getData("suppliers")
 
-    const [items,warehouses] =await Promise.all([itemsData,warehousesData])
+    const [items,warehouses,suppliers] =await Promise.all([itemsData,warehousesData,suppliersData])
     return (
-        <AdjustmentForm items={items} warehouses={warehouses} initialData={initialData} isUpdate={isUpdate}/>
+        <AdjustmentForm items={items} warehouses={warehouses} suppliers={suppliers} initialData={initialData} isUpdate={isUpdate}/>
     )
 }

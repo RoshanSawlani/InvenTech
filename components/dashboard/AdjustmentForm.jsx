@@ -7,7 +7,7 @@ import { Minus, Plus } from 'lucide-react';
 import AddInventoryForm from '@/components/dashboard/AddInventoryForm';
 
 
-export default function AdjustmentForm({items,warehouses,initialData={},isUpdate=false}) {
+export default function AdjustmentForm({items,warehouses,suppliers,initialData={},isUpdate=false}) {
     const tabs = [
         {
             title: "Add Stock",
@@ -43,7 +43,7 @@ export default function AdjustmentForm({items,warehouses,initialData={},isUpdate
                 </ul>
             </div>
                 {
-                    activeForm === "add" ? <AddInventoryForm items={items} warehouses={warehouses} initialData={initialData} isUpdate={isUpdate}/> : <TransferInventoryForm items={items} warehouses={warehouses} initialData={initialData} isUpdate={isUpdate}/>
+                    activeForm === "add" ? <AddInventoryForm items={items} warehouses={warehouses} suppliers={suppliers} initialData={initialData} isUpdate={isUpdate}/> : <TransferInventoryForm items={items} warehouses={warehouses} initialData={initialData} isUpdate={isUpdate}/>
                 }
         </div>
     )

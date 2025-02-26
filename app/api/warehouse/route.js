@@ -3,14 +3,14 @@ import { NextResponse } from "next/server";
 
 export async function POST(request) {
     try {
-        const { title, location, type, description} = await request.json();
+        const { title, location, warehouseType, description} = await request.json();
 
         const warehouse = await db.warehouse.create({
             data: {
                 title,
                 location,
                 description,
-                warehouseType: type,
+                warehouseType,
             },
         });
 
@@ -58,6 +58,9 @@ export async function DELETE(request){
             where:{
                 id
             },
+            include:{
+                item:true
+            }
         })
         return NextResponse.json(deleteWarehouse)
     } catch (error) {
