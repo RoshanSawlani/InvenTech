@@ -1,11 +1,22 @@
 "use client"
+import Login from '@/app/login/page'
 import { Building2 } from 'lucide-react'
+import { useSession } from 'next-auth/react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React from 'react'
 
 export default function HomeNavbar() {
     const pathname = usePathname()
+    const {data:session,status} = useSession()
+    if (status === 'loading') {
+        return <p>Loading user...</p>;
+    }
+    if (status === "unauthenticated") {
+        return <Login/>
+    }
+
+    const username = session?.user?.name.toUpperCase()
     const navLinks = [
         {
             title: "Dashboard",
@@ -31,8 +42,8 @@ export default function HomeNavbar() {
                     <Building2 />
                 </div>
                 <div className="flex flex-col">
-                    <p className='text-slate-700 font-semibold'>Hello, Roshan</p>
-                    <span className='text-sm'>Garat</span>
+                    <p className='text-slate-700 font-semibold'>Hello, {username}</p>
+                    {/* <span className='text-sm'>Garat</span> */}
                 </div>
             </div>
             <nav className='mt-6 flex space-x-4'>
